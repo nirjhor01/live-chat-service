@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
+
 export class ChatComponent implements OnInit, AfterViewChecked {
 
 
@@ -16,8 +17,11 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   messages: any[] = [];
   router = inject(Router);
   
+  
   loggedInUserName = sessionStorage.getItem("user");
   roomName = sessionStorage.getItem("room");
+  //loggedInUserName = "ddd";
+  //roomName = "301";
 
   @ViewChild('scrollMe') private scrollContainer!: ElementRef;
 
@@ -25,13 +29,14 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   ngOnInit(): void {
     this.chatService.messages$.subscribe(res=>{
       this.messages = res;
+      console.log("step1");
       console.log(this.messages)
     });
 
     this.chatService.connectedUsers$.subscribe(res=>{
       console.log(res);
-
-    })
+      console.log("step2");
+    });
   }
 
   ngAfterViewChecked(): void {

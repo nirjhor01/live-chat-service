@@ -4,6 +4,8 @@
     <h3 class="text-center my-2">Welcome to <span class="text-warning">{{roomName}}</span> Group</h3>
     <button (click)="leaveChat()" class="btn btn-danger">Leave Chat</button>
   </div>
+
+
   <div class="messaging">
     <div class="inbox_msg">
       <div class="inbox_people">
@@ -20,6 +22,7 @@
             </div>
           </div>
         </div>
+
         <div class="inbox_chat">
           <ng-container *ngFor="let user of this.chatService.connectedUsers$ | async">
 
@@ -70,4 +73,4 @@
 
   </div>
 
-</div>
+</div> 

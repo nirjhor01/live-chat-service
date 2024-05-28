@@ -2,7 +2,7 @@
     max-width: 1170px;
     margin: auto;
     background-color: #52ACFF;
-    background-image: linear-gradient(180deg, #52ACFF 25%, #FFE32C 100%);
+    background-image: linear-gradient(180deg, #a0a5aa 25%, #0a0a0a 100%);
   }
   
   .chat_header {
@@ -31,7 +31,7 @@
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background: green;
+    background: rgb(20, 20, 20);
   }
   
   img {
@@ -39,8 +39,8 @@
   }
   
   .inbox_people {
-    background-color: #52ACFF;
-    background-image: linear-gradient(180deg, #52ACFF 25%, #FFE32C 100%);
+    background-color: #c7ccd1;
+    background-image: linear-gradient(180deg, #cbd1d6 25%, #000000 100%);
     float: left;
     overflow: hidden;
     width: 40%;

@@ -25,13 +25,14 @@ export class ChatService {
       .build();
 
     this.connection.on("ReceiveMessage", (user: string, message: string, messageTime: string) => {
+      console.log("connection on. Time is here..");
       console.log(user, message, messageTime);
       this.messages = [...this.messages, { user, message, messageTime }];
       this.messages$.next(this.messages);
     });
 
     this.connection.on("ConnectedUsers", (users: any) => {
-      console.log(users);
+      console.log("connected = "+ users);
       this.connectedUsers$.next(users);
       this.users = users;
     });
@@ -58,12 +59,12 @@ export class ChatService {
   }
 
   // Join Room
-  public async joinRoom(user: string, room: string) {
+  public async joinRoom(user: string, room: string, mail: string) {
     console.log(user, room);
     console.log("joining room");
 
     try {
-      await this.connection.invoke("JoinRoom", { user ,room });
+      await this.connection.invoke("JoinRoom", {user, room, mail});
       console.log('joined room');
     } catch (error) {
       console.log(error);

@@ -13,22 +13,34 @@ import { FormsModule } from '@angular/forms';
 export class JoinRoomComponent implements OnInit {
 
   joinRoomForm!: FormGroup;
-  fb = inject(FormBuilder);
-  router = inject(Router);
-  chatService = inject(ChatService);
+
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private chatService: ChatService
+  ) {}
 
   ngOnInit(): void {
     this.joinRoomForm = this.fb.group({
       user: ['', Validators.required],
-      room: ['', Validators.required]
+      room: ['', Validators.required],
+      mail:['',Validators.required]
     });
   }
 
   joinRoom(){
-    const {user, room} = this.joinRoomForm.value;
+    //const {user, room} = this.joinRoomForm.value;
+    const user = this.joinRoomForm.value.user;
+    const room = this.joinRoomForm.value.room;
+    const mail = this.joinRoomForm.value.mail;
+    //console.log("mail = "+ mail);
+
     sessionStorage.setItem("user", user);
     sessionStorage.setItem("room", room);
-    this.chatService.joinRoom(user, room)
+    localStorage.setItem("user",user);
+    localStorage.setItem("room",room);
+
+    this.chatService.joinRoom(user, room, mail)
     .then(()=>{
       this.router.navigate(['chat']);
     }).catch((err)=>{
