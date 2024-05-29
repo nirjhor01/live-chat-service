@@ -20,7 +20,7 @@ export class ChatService {
   // Initialize SignalR connection
   private initializeConnection() {
     this.connection = new signalR.HubConnectionBuilder()
-      .withUrl("https://localhost:44331/chat")
+      .withUrl("https://localhost:7294/chat")
       .configureLogging(signalR.LogLevel.Information)
       .build();
 
@@ -45,28 +45,27 @@ export class ChatService {
   public async start() {
     try {
       await this.connection.start();
-      console.log("connected");
+      console.log("connected backend..");
 
       // After connection is established, join the room if needed
       // For demonstration purposes, assuming room details are stored in variables
-      const user = "admin";
-      const room = "talk";
-      
-      await this.joinRoom(user, room);
+    
     } catch (error) {
       console.log(error);
     }
   }
 
   // Join Room
-  public async joinRoom(user: string, room: string, mail: string) {
-    console.log(user, room);
-    console.log("joining room");
+  public async joinRoom(user: string, room: string, mail: string, isAdmin:string) {
+   
 
     try {
-      await this.connection.invoke("JoinRoom", {user, room, mail});
-      console.log('joined room');
+      await this.connection.invoke("JoinRoom", {user, room, mail, isAdmin});
+      console.log("check......");
+      console.log(user, room, mail, isAdmin);
+      console.log("joined Room successfully, Invoke JoinRoom is working...");
     } catch (error) {
+      console.log("Invoke JoinRoom isnot working...");
       console.log(error);
     }
   }
@@ -78,6 +77,7 @@ export class ChatService {
     try {
       await this.connection.invoke("SendMessage", message);
     } catch (error) {
+      console.log("error to invoke sendMessage");
       console.log(error);
     }
   }

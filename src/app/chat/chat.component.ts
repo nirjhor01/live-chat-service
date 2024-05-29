@@ -52,6 +52,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     })
   }
 
+ 
+
   leaveChat(){
     this.chatService.leaveChat()
     .then(()=>{

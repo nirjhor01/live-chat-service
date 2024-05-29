@@ -24,7 +24,8 @@ export class JoinRoomComponent implements OnInit {
     this.joinRoomForm = this.fb.group({
       user: ['', Validators.required],
       room: ['', Validators.required],
-      mail:['',Validators.required]
+      mail:['',Validators.required],
+      isAdmin:[false]
     });
   }
 
@@ -33,19 +34,34 @@ export class JoinRoomComponent implements OnInit {
     const user = this.joinRoomForm.value.user;
     const room = this.joinRoomForm.value.room;
     const mail = this.joinRoomForm.value.mail;
+    const isAdmin = this.joinRoomForm.value.isAdmin; 
     //console.log("mail = "+ mail);
 
-    sessionStorage.setItem("user", user);
-    sessionStorage.setItem("room", room);
+
+
     localStorage.setItem("user",user);
     localStorage.setItem("room",room);
+    localStorage.setItem("mail",mail);
+    localStorage.setItem("isAdmin", isAdmin.toString());
 
-    this.chatService.joinRoom(user, room, mail)
-    .then(()=>{
-      this.router.navigate(['chat']);
+    const isAdminString: string = isAdmin.toString();
+
+
+    // this.chatService.joinRoom(user, room, mail)
+    // .then(()=>{
+    //   this.router.navigate(['chat']);
+    // }).catch((err)=>{
+    //   console.log(err);
+    // })
+
+    this.chatService.joinRoom(user, room, mail, isAdminString).then(()=>{
+      console.log("components working, joining room");
+    this.router.navigate(['chat']);
     }).catch((err)=>{
       console.log(err);
     })
+
+
 
   }
 

@@ -5,6 +5,7 @@
       <div class="text-center mb-5 text-dark">Please Join the Room to start Chatting</div>
       <div class="card my-5">
 
+        <!-- startForm -->
         <form [formGroup]="joinRoomForm" class="card-body cardbody-color p-lg-5">
 
           <div class="text-center">
@@ -26,17 +27,19 @@
             <input formControlName="mail" type="mail" class="form-control" id="mailname" placeholder="Email">
           </div>
 
-          <!-- Include the is admin checkbox -->
-          <div class="mb-3 form-check">
-            <input formControlName="isAdmin" type="checkbox" class="form-check-input" id="isAdminCheckbox">
-            <label class="form-check-label" for="isAdminCheckbox">Are you an admin?</label>
-          </div>
+          <div class="mb-3">
+            <input formControlName="isAdmin" type="checkbox" class="form-check-input" id="AdminCheckbox">
+            <label class="form-check-label" for="AdminCheckbox">Admin</label>
+        </div>
+        
 
           <div class="text-center">
             <button [disabled]="joinRoomForm.invalid" (click)="joinRoom()" type="submit" class="btn btn-color px-5 mb-5 w-100">Join</button>
           </div>
 
         </form>
+        <!-- endForm -->
+
       </div>
 
     </div>
